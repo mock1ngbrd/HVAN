@@ -25,7 +25,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--exp_name", type=str, default='HVAF')
 # parser.add_argument("--exp_name", type=str, default='debug')
 parser.add_argument("--gpu", type=str, default='0')
-parser.add_argument("--k_num", type=int, default=4)
+parser.add_argument("--k_num", type=int, default=1)
 parser.add_argument("--train_bs", type=int, default=8)
 parser.add_argument("--val_bs", type=int, default=8)
 parser.add_argument("--write_image", type=bool, default=False)
@@ -109,9 +109,9 @@ def train():
     last_metrics = np.zeros((args.k_num, 5))
     for (train_pos_index, val_pos_index), (train_neg_index, val_neg_index) in zip(kf.split(pos_nobox_list),
                                                                                   kf.split(neg_list)):
-        if k_index == 1:
-            k_index += 2
-            break
+        # if k_index == 1:
+        #     k_index += 2
+        #     break
         train_pos_list, val_pos_list = list(pos_nobox_list[train_pos_index]), list(pos_nobox_list[val_pos_index])
         train_neg_list, val_neg_list = list(neg_list[train_neg_index]), list(neg_list[val_neg_index])
 
